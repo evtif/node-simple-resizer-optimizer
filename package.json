@@ -1,0 +1,15 @@
+{
+  "name": "img-resizer",
+  "version": "0.0.1",
+  "description": "resize images, optimize and convert to webp",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "test"
+  },
+  "author": "Dimitry Evtifeev",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.25.2"
+  }
+}
