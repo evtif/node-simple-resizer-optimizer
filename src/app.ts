@@ -5,9 +5,7 @@ interface Options {
   saveLocal?: boolean;
 }
 
-interface AWSConfig {
-
-}
+interface AWSConfig {}
 
 type ImageSize = 'thumbnail' | 'product' | 'origin';
 
