@@ -9,7 +9,7 @@
     "lint": "eslint ./src --fix"
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "./src/**/*.ts": [
       "npm run build",
       "npm run lint",
       "git add ."
