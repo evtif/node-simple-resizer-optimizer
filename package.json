@@ -9,8 +9,8 @@
   },
   "lint-staged": {
     "src/**/*.{ts}": [
-      "eslint . --fix",
       "npm run build",
+      "eslint . --fix",
       "git add ."
     ]
   },
