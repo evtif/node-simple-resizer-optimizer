@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "lint": "eslint ./src --fix"
   },
   "lint-staged": {
-    "src/**/*.{ts}": [
+    "src/**/*.ts": [
       "npm run build",
-      "eslint . --fix",
+      "npm run lint",
       "git add ."
     ]
   },
@@ -19,7 +20,7 @@
       "pre-commit": "lint-staged"
     }
   },
-  "author": "Dimitry Evtifeev",
+  "author": "Dmitriy Evtifeev",
   "license": "ISC",
   "dependencies": {
     "sharp": "^0.25.2"
