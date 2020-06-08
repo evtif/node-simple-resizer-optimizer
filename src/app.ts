@@ -1,11 +1,26 @@
+
+interface Options {
+  awsConfig?: AWSConfig;
+  imageSizes?: Array<ImageSize>;
+  saveLocal?: boolean;
+}
+
+interface AWSConfig {
+
+}
+
+type ImageSize = 'thumbnail' | 'product' | 'origin';
+
 const sharp = require('sharp');
 const fs = require('fs');
 
-const imgPath = './source-imgs/';
-const distPath = './ouput-imgs/';
-const THUMBNAIL = 'thumbnail_'
-const PRODUCT = 'product_';
-const ORIGIN = 'origin_';
+const defaultImgPath: string = './source-imgs/';
+const distPath: string = './ouput-imgs/';
+const THUMBNAIL: string = 'thumbnail_'
+const PRODUCT: string = 'product_';
+const ORIGIN: string = 'origin_';
+
+function app (pathToImages: string, ouputPath: string = '', options = {}) {}
 
 if (fs.existsSync(distPath)) {
   fs.rmdirSync(distPath, {recursive: true});
@@ -13,21 +28,21 @@ if (fs.existsSync(distPath)) {
 
 fs.mkdirSync(distPath);
 
-fs.readdir(imgPath, (err, files) => {
+fs.readdir(defaultImgPath, (err, files) => {
   if (err) throw new Error(err.message);
 
   for (let i = 0; i < files.length; i++) {
-    const pathToImage = imgPath + files[i];
-    const filename = files[i].split('.');
+    const pathToImage = defaultImgPath + files[i];
+    const filename: Array<string> = files[i].split('.');
     
     filename.splice(-1, 1);
     
-    const pathToUpdatedImageThumbnailJPG = `${distPath}${THUMBNAIL}${filename.join('.')}.jpg`;
-    const pathToUpdatedImageProductJPG = `${distPath}${PRODUCT}${filename.join('.')}.jpg`;
-    const pathToUpdatedImageOriginJPG = `${distPath}${ORIGIN}${filename.join('.')}.jpg`;
-    const pathToUpdatedImageThumbnailWEBP = `${distPath}${THUMBNAIL}${filename.join('.')}.webp`;
-    const pathToUpdatedImageProductWEBP = `${distPath}${PRODUCT}${filename.join('.')}.webp`;
-    const pathToUpdatedImageOriginWEBP = `${distPath}${ORIGIN}${filename.join('.')}.webp`;
+    const pathToUpdatedImageThumbnailJPG: string = `${distPath}${THUMBNAIL}${filename.join('.')}.jpg`;
+    const pathToUpdatedImageProductJPG: string = `${distPath}${PRODUCT}${filename.join('.')}.jpg`;
+    const pathToUpdatedImageOriginJPG: string = `${distPath}${ORIGIN}${filename.join('.')}.jpg`;
+    const pathToUpdatedImageThumbnailWEBP: string = `${distPath}${THUMBNAIL}${filename.join('.')}.webp`;
+    const pathToUpdatedImageProductWEBP: string = `${distPath}${PRODUCT}${filename.join('.')}.webp`;
+    const pathToUpdatedImageOriginWEBP: string = `${distPath}${ORIGIN}${filename.join('.')}.webp`;
 
     const stream = fs.createReadStream(pathToImage);
     const writableStreamThumbnailJpeg = fs.createWriteStream(pathToUpdatedImageThumbnailJPG);
@@ -52,3 +67,5 @@ fs.readdir(imgPath, (err, files) => {
     stream.pipe(transformerOriginWebp).pipe(writableStreamOriginWebp);
  }
 });
+
+module.exports = app;
