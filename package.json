@@ -10,7 +10,8 @@
   "lint-staged": {
     "src/**/*.{ts}": [
       "eslint . --fix",
-      "git add"
+      "npm run build",
+      "git add ."
     ]
   },
   "husky": {
