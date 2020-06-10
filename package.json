@@ -1,5 +1,5 @@
 {
-  "name": "img-resizer",
+  "name": "image-simple-resize",
   "version": "0.0.3",
   "description": "Resize images, optimize, convert to webp and deploy to AWS S3.",
   "main": "index.js",
