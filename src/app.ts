@@ -80,7 +80,7 @@ const app = (pathToImages: string, options: Options = { useWebp: true }, ouputPa
   }
 
   if (!checkAwsCredentials(options.awsConfig)) {
-    throw new Error('Path to images is not exists!');
+    throw new Error('AWS credentials are not exist!');
   }
 
   const imageSizePrefixes: Array<string> = options.imageSizes && Object.keys(options.imageSizes);
