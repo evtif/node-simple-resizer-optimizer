@@ -34,7 +34,7 @@ const stream = require('stream');
 const sharp = require('sharp');
 const AWS = require('aws-sdk');
 
-const supportedFormats: Array<string> = ['jpeg', 'png', 'jpg', 'webp', 'tiff', 'gif', 'svg'];
+const supportedFormats: Set<string> = new Set(['jpeg', 'png', 'jpg', 'webp', 'tiff', 'gif', 'svg']);
 const defaultImageSizes: ImageSizes = {
   thumbnail: 80,
   product: 400,
@@ -116,7 +116,7 @@ const app = (pathToImages: string, options: Options = { useWebp: true }, ouputPa
       const splitedFilename: Array<string> = files[i].split('.');
       const fileFormat: Array<string> = splitedFilename.splice(-1, 1);
       
-      if (!fileFormat[0] || !supportedFormats.includes(fileFormat[0])) {
+      if (!fileFormat[0] || !supportedFormats.has(fileFormat[0])) {
         continue;
       }
 
